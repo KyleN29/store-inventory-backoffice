@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using store_inventory_backoffice.Data;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -13,6 +13,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 var app = builder.Build();
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(); // This creates the interactive webpage
+}
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
