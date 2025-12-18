@@ -1,0 +1,13 @@
+.label-row {
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+    color: white;
+    justify-content: space-between;
+}
+.product-row {
+    display: flex;
+    flex-direction: row;
+    background-color: gray;
+    justify-content: space-between;
+}

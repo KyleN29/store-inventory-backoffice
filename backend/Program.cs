@@ -2,6 +2,15 @@ using Microsoft.EntityFrameworkCore;
 using store_inventory_backoffice.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.WithOrigins("http://localhost:5173")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
@@ -22,6 +31,7 @@ app.UseDefaultFiles();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseCors("AllowFrontend");
 app.UseAuthorization();
 app.MapControllers();
 app.MapFallbackToFile("index.html");
